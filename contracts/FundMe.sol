@@ -6,10 +6,11 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
 // 3. Interfaces, Libraries, Contracts
-error FundMe__NotOwner();
+error FundMe__NotOwner(); //It is a good practice to error code like the one in this line. Format: contractName_errorName
 
+//NatSpec format
 /**@title A sample Funding Contract
- * @author Patrick Collins
+ * @author EddiePumpin
  * @notice This contract is for creating a sample funding contract
  * @dev This implements price feeds as our library
  */
@@ -18,11 +19,11 @@ contract FundMe {
     using PriceConverter for uint256;
 
     // State variables
-    uint256 public constant MINIMUM_USD = 50 * 10**18;
-    address private immutable i_owner;
-    address[] private s_funders;
-    mapping(address => uint256) private s_addressToAmountFunded;
-    AggregatorV3Interface private s_priceFeed;
+    uint256 public constant MINIMUM_USD = 50 * 10**18; // constant variable should be in caps lock(CAPITAL LETTERS)
+    address private immutable i_owner; // immutable variables should have a prefix of i_
+    address[] private s_funders; // s_funders is a storage variable
+    mapping(address => uint256) private s_addressToAmountFunded; // s_ means storage. s_addressToAmountFunded is a storage variable.
+    AggregatorV3Interface private s_priceFeed; // s_priceFeed is a storage variable
 
     // Events (we have none!)
 
@@ -43,8 +44,9 @@ contract FundMe {
     //// private
     //// view / pure
 
-    constructor(address priceFeed) {
-        s_priceFeed = AggregatorV3Interface(priceFeed);
+    constructor(address priceFeedAddress) {
+        //
+        s_priceFeed = AggregatorV3Interface(priceFeedAddress);
         i_owner = msg.sender;
     }
 
@@ -76,7 +78,7 @@ contract FundMe {
     }
 
     function cheaperWithdraw() public onlyOwner {
-        address[] memory funders = s_funders;
+        address[] memory funders = s_funders; // it is written like this to keep reading from funders for gas optimization
         // mappings can't be in memory, sorry!
         for (
             uint256 funderIndex = 0;

@@ -10,8 +10,13 @@ const networkConfig = {
 }
 
 const developmentChains = ["hardhat", "localhost"]
+const DECIMALS = 8
+const INITIAL_ANSWER = 200000000000
 
+//This section allows this script to be exported so that other scripts can use them
 module.exports = {
     networkConfig,
     developmentChains,
+    DECIMALS,
+    INITIAL_ANSWER,
 }

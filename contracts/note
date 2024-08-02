@@ -1,0 +1,9 @@
+When building Dapps, you mostly have 2 repos
+
+-One for the smart contracts.
+-One for the front end/Website.
+
+FullStack = Smart contracts(backend) + Html / Javascripts / Website stuff(front end)
+
+HTML/Javascript
+Later on, we will use Nextjs / Reactjs
