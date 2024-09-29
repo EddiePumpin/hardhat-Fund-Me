@@ -1,3 +1,7 @@
+// We are writing this mock because we have an address as argument in the constructor.
+// We are going to only want to deploy mocks if we are on a development chain.
+// Mock has something to do with helper-hardhat.config.js
+
 const { network } = require("hardhat")
 const {
     developmentChains,

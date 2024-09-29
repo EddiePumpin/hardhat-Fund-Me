@@ -10,8 +10,8 @@
         "chai": "^4.3.4",
         "dotenv": "^14.2.0",
         "ethereum-waffle": "^3.4.0",
-        "ethers": "^6.13.1",
-        "hardhat": "^2.22.6",
+        "ethers": "5.7.2",
+        "hardhat": "^2.22.9",
         "hardhat-deploy": "^0.12.4",
         "hardhat-deploy-ethers": "^0.4.2",
         "hardhat-gas-reporter": "^1.0.7",
@@ -27,6 +27,7 @@
         "lint": "solhint 'contracts/**/*.sol'",
         "lint:fix": "solhint 'contracts/**/*.sol' --fix",
         "format": "prettier --write .",
-        "coverage": "hardhat coverage"
+        "coverage": "hardhat coverage",
+        "license": "ISC"
     }
 }

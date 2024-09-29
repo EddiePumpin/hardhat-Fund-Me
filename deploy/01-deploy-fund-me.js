@@ -33,7 +33,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     let ethUsdPriceFeedAddress
     if (developmentChains.includes(network.name)) {
-        const ethUsdAggregator = await deployments.get("MockV3Aggregator") // the 'get' keyword allow us to get the recently deployment
+        const ethUsdAggregator = await deployments.get("MockV3Aggregator") // It retrieves the deployment details of the deployed contract "MockV3Aggregator" the 'get' keyword allow us to get the recently deployment
         ethUsdPriceFeedAddress = ethUsdAggregator.address
     } else {
         ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
@@ -42,19 +42,21 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     // if the contract doesn't exist, we depoy a minimal version of it for our local testing
 
     // well what happens when we want to change chains
-    // when going for localhost or hardhat ntwork we want to use a mock
+    // when going for localhost or hardhat network we want to use a mock
 
     //const args = [ethUsdPriceFeedAddress]
 
+    // This section means deploy our smart contract as 'fundMe' from the deployer using the arguement(ethUsdPriceFeedAddress)
     const fundMe = await deploy("FundMe", {
         // This is used to deploy a contract. It is similar to using contractFactory but 'deploy' function is used here.
         from: deployer,
         //args: args
         args: [ethUsdPriceFeedAddress], // put price feed address.
         log: true,
-        waitConfirmation: network.config.blockConfirmations || 1,
+        waitConfirmation: network.config.blockConfirmations || 1, // The network is from hardhat.config
     })
 
+    // Unless you import the verify.js file this section won't work and the contract address won't verify
     if (
         !developmentChains.includes(network.name) &&
         process.env.ETHERSCAN_API_KEY

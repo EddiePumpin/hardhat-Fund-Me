@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // 1. Pragma
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.20;
 // 2. Imports
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
@@ -19,7 +19,7 @@ contract FundMe {
     using PriceConverter for uint256;
 
     // State variables
-    uint256 public constant MINIMUM_USD = 50 * 10**18; // constant variable should be in caps lock(CAPITAL LETTERS)
+    uint256 public constant MINIMUM_USD = 50 * 10 ** 18; // constant variable should be in caps lock(CAPITAL LETTERS)
     address private immutable i_owner; // immutable variables should have a prefix of i_
     address[] private s_funders; // s_funders is a storage variable
     mapping(address => uint256) private s_addressToAmountFunded; // s_ means storage. s_addressToAmountFunded is a storage variable.
@@ -98,11 +98,9 @@ contract FundMe {
      *  @param fundingAddress the address of the funder
      *  @return the amount funded
      */
-    function getAddressToAmountFunded(address fundingAddress)
-        public
-        view
-        returns (uint256)
-    {
+    function getAddressToAmountFunded(
+        address fundingAddress
+    ) public view returns (uint256) {
         return s_addressToAmountFunded[fundingAddress];
     }
 
